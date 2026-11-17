@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আনাস ফ্যাশন হাউজ | প্রিমিয়াম ফ্যাশন, টেইলরিং ও মার্কেটপ্লেস</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* নেভিগেশন বার */
+        header {
+            background-color: #1a1a2e;
+            color: #fff;
+            padding: 14px 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #e94560;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: #fff;
+            font-size: 13px;
+            display: block;
+            font-weight: normal;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        nav button.nav-btn {
+            background: transparent;
+            border: none;
+            color: #fff;
+            padding: 8px 13px;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        nav button.nav-btn:hover,
+        nav button.nav-btn.active-nav {
+            background-color: #e94560;
+            color: #fff;
+        }
+
+        .cart-nav-btn {
+            background-color: #0f3460 !important;
+            border: 1px solid #e94560 !important;
+            font-weight: bold !important;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 26px;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* পেজ সেকশন সিস্টেম (আলাদা পেজের মতো কাজ করবে) */
+        .page-view {
+            display: none;
+            animation: pageFade 0.35s ease;
+            min-height: 75vh;
+        }
+
+        .page-view.active-page {
+            display: block;
+        }
+
+        @keyframes pageFade {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* হিরো ব্যানার */
+        .hero {
+            background: linear-gradient(rgba(15, 15, 30, 0.72), rgba(15, 15, 30, 0.72)),
+                url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1350&q=80') center/cover;
+            min-height: 55vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 40px 20px;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 17px;
+            margin-bottom: 22px;
+            max-width: 720px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            background-color: #e94560;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background-color: #c7364f;
+        }
+
+        .btn-secondary {
+            background-color: #1a1a2e;
+            border: 1px solid #fff;
+        }
+
+        /* অটোমেটিক প্রোডাক্ট স্লাইডার (Auto Slider) */
+        .slider-section {
+            padding: 45px 4%;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: #1a1a2e;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .slider-track {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            animation: autoSlide 32s linear infinite;
+        }
+
+        .slider-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes autoSlide {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .slide-card {
+            width: 240px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            flex-shrink: 0;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+
+        .slide-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .slide-card-body {
+            padding: 12px;
+        }
+
+        .slide-card-body h4 {
+            font-size: 15px;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+
+        .slide-card-body p {
+            color: #e94560;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* ফিচার বক্স */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-box {
+            background: #fff;
+            padding: 22px;
+            border-radius: 10px;
+            border-top: 4px solid #e94560;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+        }
+
+        /* কালেকশন পেজ ও বাম কর্নারের সার্চ বার */
+        .products-section {
+            padding: 40px 4%;
+        }
+
+        .collection-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 25px;
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        /* বাম পাশের কর্নারে সার্চ বার */
+        .search-corner-box {
+            flex: 1;
+            min-width: 260px;
+            max-width: 380px;
+            text-align: left;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 16px;
+            font-size: 14px;
+            border: 2px solid #1a1a2e;
+            border-radius: 25px;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #e94560;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .filter-btn {
+            background-color: #f1f3f5;
+            color: #1a1a2e;
+            border: 1px solid #ccc;
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: #e94560;
+            border-color: #e94560;
+            color: #fff;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 22px;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #1a1a2e;
+            color: #fff;
+            padding: 3px 9px;
+            font-size: 11px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .badge.women {
+            background-color: #e94560;
+        }
+
+        .badge.unisex {
+            background-color: #0f3460;
+        }
+
+        .badge.kids {
+            background-color: #2e8b57;
+        }
+
+        .badge.seller {
+            background-color: #d97706;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 16px;
+        }
+
+        .product-info h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #1a1a2e;
+        }
+
+        .size-info {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 6px;
+        }
+
+        .price {
+            color: #e94560;
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+        }
+
+        .btn-cart {
+            background-color: #0f3460;
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 13px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-cart:hover {
+            background-color: #1a1a2e;
+        }
+
+        /* কাস্টম টেইলরিং ও সেলার ফর্ম স্টাইল */
+        .form-page-container {
+            max-width: 850px;
+            margin: 35px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border-top: 5px solid #e94560;
+        }
+
+        .form-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .input-group {
+            margin-bottom: 14px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #1a1a2e;
+        }
+
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1.5px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus,
+        .input-group textarea:focus {
+            border-color: #e94560;
+        }
+
+        /* অর্ডার ফর্ম ও পেমেন্ট সেকশন */
+        .checkout-container {
+            max-width: 1050px;
+            margin: 35px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.1);
+        }
+
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 30px;
+        }
+
+        .checkout-box-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1a1a2e;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #e94560;
+        }
+
+        .selected-item-card {
+            background: #fdf2f4;
+            border: 1.5px solid #e94560;
+            border-radius: 10px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .selected-item-details {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .selected-item-details img {
+            width: 55px;
+            height: 55px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            background: #1a1a2e;
+            color: #fff;
+            border: none;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .order-type-box,
+        .payment-methods-box,
+        .summary-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 16px;
+        }
+
+        .radio-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 7px 0;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .radio-row input {
+            margin-right: 8px;
+            accent-color: #e94560;
+            transform: scale(1.15);
+        }
+
+        .account-details-card {
+            background: #1a1a2e;
+            color: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-top: 10px;
+            line-height: 1.7;
+        }
+
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed #ccc;
+            font-size: 14px;
+        }
+
+        .summary-line.total {
+            border-bottom: none;
+            font-size: 18px;
+            font-weight: bold;
+            color: #e94560;
+        }
+
+        /* রিভিউ কার্ড */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 25px auto;
+            padding: 0 5%;
+        }
+
+        .review-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+        }
+
+        /* অর্ডার নোটিফিকেশন পপ-আপ (Order Confirmation Notification) */
+        .notification-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .notification-card {
+            background: #fff;
+            max-width: 460px;
+            width: 100%;
+            padding: 28px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-top: 6px solid #25D366;
+        }
+
+        .notif-icon {
+            font-size: 48px;
+            color: #25D366;
+            margin-bottom: 10px;
+        }
+
+        .receipt-box {
+            background: #f8f9fa;
+            padding: 14px;
+            border-radius: 8px;
+            text-align: left;
+            font-size: 13px;
+            margin: 15px 0;
+            border: 1px dashed #999;
+        }
+
+        /* ফ্লোটিং হোয়াটসঅ্যাপ বাটন */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: #fff;
+            padding: 11px 18px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1500;
+        }
+
+        footer {
+            background-color: #11111f;
+            color: #aaa;
+            padding: 20px 5%;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #1a1a2e;
+                padding: 15px;
+            }
+
+            nav.show {
+                display: flex;
+            }
+
+            nav button.nav-btn {
+                width: 100%;
+                text-align: left;
+            }
+
+            .checkout-grid,
+            .form-grid-2,
+            .form-grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- নেভিগেশন বার -->
+    <header>
+        <div class="logo" onclick="switchPage('home-page', document.getElementById('nav-home'))">
+            আনাস ফ্যাশন হাউজ
+            <span>Anas Fabrics & Ladies Tailors</span>
+        </div>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav id="navbar">
+            <button id="nav-home" class="nav-btn active-nav" onclick="switchPage('home-page', this)">হোম</button>
+            <button id="nav-collection" class="nav-btn" onclick="switchPage('collection-page', this)">কালেকশন</button>
+            <button id="nav-tailor" class="nav-btn" onclick="switchPage('tailor-page', this)">✂️ কাস্টম টেইলরিং</button>
+            <button id="nav-seller" class="nav-btn" onclick="switchPage('seller-page', this)">🏪 সেলার হোন</button>
+            <button id="nav-reviews" class="nav-btn" onclick="switchPage('reviews-page', this)">রিভিউ</button>
+            <button id="nav-checkout" class="nav-btn" onclick="switchPage('checkout-page', this)">অর্ডার ফর্ম</button>
+            <button id="nav-contact" class="nav-btn" onclick="switchPage('contact-page', this)">যোগাযোগ</button>
+            <button class="nav-btn cart-nav-btn" onclick="openCartModal()">🛒 কার্ট (<span
+                    id="cartCount">0</span>)</button>
+        </nav>
+    </header>
+
+    <!-- ==================== পেজ ১: হোম পেজ ==================== -->
+    <div id="home-page" class="page-view active-page">
+        <section class="hero">
+            <h1>স্টাইল ও উষ্ণতায় সেরা ফ্যাশন এবং কাস্টম টেইলরিং</h1>
+            <p>ছেলে, মেয়ে ও বাচ্চাদের প্রিমিয়াম রেডিমেড পোশাকের পাশাপাশি আপনার নিজের পছন্দমতো মাপ ও ডিজাইনে
+                <strong>Anas Fabrics and Ladies Tailors</strong>-এ জামা তৈরি করে নেওয়ার অনলাইন সুবিধা।</p>
+            <div class="hero-btns">
+                <button class="btn"
+                    onclick="switchPage('collection-page', document.getElementById('nav-collection'))">সব কালেকশন
+                    দেখুন</button>
+                <button class="btn" style="background:#0f3460;"
+                    onclick="switchPage('tailor-page', document.getElementById('nav-tailor'))">✂️ নিজের মাপে কাপড়
+                    বানান</button>
+                <button class="btn" style="background:#25D366;"
+                    onclick="switchPage('checkout-page', document.getElementById('nav-checkout'))">সরাসরি অর্ডার
+                    করুন</button>
+            </div>
+        </section>
+
+        <!-- অটোমেটিক প্রোডাক্ট স্লাইডার -->
+        <section class="slider-section">
+            <h2 class="section-title">🔥 জনপ্রিয় ও ট্রেন্ডিং কালেকশন (অটো স্লাইড)</h2>
+            <p class="section-subtitle">পছন্দের পোশাকটিতে ক্লিক করে সরাসরি অর্ডার করুন</p>
+            <div class="slider-container">
+                <div class="slider-track" id="autoSliderTrack">
+                    <!-- স্লাইডার আইটেমগুলো JS দিয়ে অটোমেটিক ডুপ্লিকেট হয়ে স্মুথলি ঘুরবে -->
+                    <div class="slide-card">
+                        <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=400&q=80"
+                            alt="জ্যাকেট">
+                        <div class="slide-card-body">
+                            <h4>স্টাইলিশ উইন্টার জ্যাকেট</h4>
+                            <p>৳ ২,২০০</p>
+                            <button class="btn"
+                                onclick="goToCheckoutWithProduct('স্টাইলিশ উইন্টার জ্যাকেট', 2200, 'M, L, XL', 'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=400&q=80')">অর্ডার
+                                করুন</button>
+                        </div>
+                    </div>
+                    <div class="slide-card">
+                        <img src="https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&w=400&q=80"
+                            alt="থ্রি-পিস">
+                        <div class="slide-card-body">
+                            <h4>প্রিমিয়াম জর্জেট থ্রি-পিস</h4>
+                            <p>৳ ১,৮৫০</p>
+                            <button class="btn"
+                                onclick="goToCheckoutWithProduct('প্রিমিয়াম জর্জেট এমব্রয়ডারি থ্রি-পিস', 1850, 'Unstitched, M, L, XL', 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&w=400&q=80')">অর্ডার
+                                করুন</button>
+                        </div>
+                    </div>
+                    <div class="slide-card">
+                        <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&w=400&q=80"
+                            alt="বোরকা">
+                        <div class="slide-card-body">
+                            <h4>দুবাই চেরি বোরকা সেট</h4>
+                            <p>৳ ১,৬০০</p>
+                            <button class="btn"
+                                onclick="goToCheckoutWithProduct('দুবাই চেরি প্রিমিয়াম বোরকা ও হিজাব সেট', 1600, '52, 54, 56', 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&w=400&q=80')">অর্ডার
+                                করুন</button>
+                        </div>
+                    </div>
+                    <div class="slide-card">
+                        <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=400&q=80"
+                            alt="গাউন">
+                        <div class="slide-card-body">
+                            <h4>লাক্সারি পার্টি গাউন</h4>
+                            <p>৳ ২,৯৫০</p>
+                            <button class="btn"
+                                onclick="goToCheckoutWithProduct('লাক্সারি পার্টি গাউন ড্রেস', 2950, 'S, M, L, XL', 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=400&q=80')">অর্ডার
+                                করুন</button>
+                        </div>
+                    </div>
+                    <div class="slide-card">
+                        <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=400&q=80"
+                            alt="বেবি হুডি">
+                        <div class="slide-card-body">
+                            <h4>কিডস কার্টুন ফ্লিস হুডি</h4>
+                            <p>৳ ৭৫০</p>
+                            <button class="btn"
+                                onclick="goToCheckoutWithProduct('কিডস কার্টুন প্রিন্ট ফ্লিস হুডি', 750, '২ - ৮ বছর', 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=400&q=80')">অর্ডার
+                                করুন</button>
+                        </div>
+                    </div>
+                    <div class="slide-card">
+                        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=400&q=80"
+                            alt="শার্ট">
+                        <div class="slide-card-body">
+                            <h4>ম্যানফেয়ার সলিড শার্ট</h4>
+                            <p>৳ ১,০৫০</p>
+                            <button class="btn"
+                                onclick="goToCheckoutWithProduct('ম্যানফেয়ার প্রিমিয়াম সলিড শার্ট (MS-03)', 1050, 'M, L, XL', 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=400&q=80')">অর্ডার
+                                করুন</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- বিশেষ সুবিধাসমূহ -->
+        <div class="features-grid">
+            <div class="feature-box">
+                <h3>🚚 Hand Pay & Pay Order</h3>
+                <p>পণ্য হাতে পেয়ে টাকা পরিশোধ (Hand Pay) অথবা বিকাশ, নগদ, রকেট ও ব্যাংকের মাধ্যমে অগ্রিম পেমেন্টের
+                    সুবিধা।</p>
+            </div>
+            <div class="feature-box">
+                <h3>✂️ অনলাইন লেডিস টেইলর</h3>
+                <p>ঘরে বসেই আপনার জামার লম্বা, বডি, কোমর ও হাতার মাপ দিয়ে দক্ষ কারিগর দ্বারা পোশাক বানিয়ে নিন।</p>
+            </div>
+            <div class="feature-box">
+                <h3>🏪 সেলার পার্টনারশিপ</h3>
+                <p>আপনার নিজের দোকানের বা হাতের তৈরি পোশাক আমাদের ওয়েবসাইটে লিস্ট করে সারা দেশে বিক্রি করুন।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== পেজ ২: কালেকশন পেজ ==================== -->
+    <div id="collection-page" class="page-view">
+        <section class="products-section">
+            <h2 class="section-title">আমাদের সম্পূর্ণ পোশাক কালেকশন</h2>
+            <p class="section-subtitle">বাম কর্নার থেকে পোশাক খুঁজুন অথবা ক্যাটাগরি নির্বাচন করুন</p>
+
+            <!-- টপ বার: বাম কর্নারে সার্চ বার এবং ডানপাশে ক্যাটাগরি -->
+            <div class="collection-top-bar">
+                <div class="search-corner-box">
+                    <input type="text" id="searchInput" class="search-input" onkeyup="applyFilters()"
+                        placeholder="🔍 কাপড় খুঁজুন (গাউন, শার্ট, বোরকা, বেবি)...">
+                </div>
+
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="setCategory('all', this)">সব কালেকশন</button>
+                    <button class="filter-btn" onclick="setCategory('men', this)">ছেলেদের</button>
+                    <button class="filter-btn" onclick="setCategory('women', this)">মেয়েদের</button>
+                    <button class="filter-btn" onclick="setCategory('unisex', this)">ছেলে ও মেয়ে</button>
+                    <button class="filter-btn" onclick="setCategory('kids', this)">বাচ্চাদের ও নবজাতক</button>
+                </div>
+            </div>
+
+            <div class="product-grid" id="productGrid">
+                <!-- প্রোডাক্ট ১ -->
+                <div class="product-card" data-category="men">
+                    <span class="badge">ছেলেদের</span>
+                    <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=600&q=80"
+                        alt="উইন্টার জ্যাকেট">
+                    <div class="product-info">
+                        <h3>স্টাইলিশ উইন্টার জ্যাকেট</h3>
+                        <p class="size-info">সাইজ: M, L, XL</p>
+                        <p class="price">৳ ২,২০০ টাকা</p>
+                        <div class="card-actions">
+                            <button class="btn"
+                                onclick="goToCheckoutWithProduct('স্টাইলিশ উইন্টার জ্যাকেট', 2200, 'M, L, XL', 'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=600&q=80')">অর্ডার</button>
+                            <button class="btn-cart" onclick="addToCart('স্টাইলিশ উইন্টার জ্যাকেট', 2200)">+
+                                কার্ট</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- প্রোডাক্ট ২ -->
+                <div class="product-card" data-category="women">
+                    <span class="badge women">মেয়েদের</span>
+                    <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=600&q=80"
+                        alt="উইন্টার কার্ডিগান">
+                    <div class="product-info">
+                        <h3>প্রিমিয়াম নিটেড কার্ডিগান</h3>
+                        <p class="size-info">সাইজ: S, M, L, XL</p>
+                        <p class="price">৳ ১,৪৫০ টাকা</p>
+                        <div class="card-actions">
+                            <button class="btn"
+                                onclick="goToCheckoutWithProduct('প্রিমিয়াম নিটেড কার্ডিগান', 1450, 'S, M, L, XL', 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=600&q=80')">অর্ডার</button>
+                            <button class="btn-cart" onclick="addToCart('প্রিমিয়াম নিটেড কার্ডিগান', 1450)">+
+                                কার্ট</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- প্রোডাক্ট ৩ -->
+                <div class="product-card" data-category="unisex">
+                    <span class="badge unisex">ছেলে ও মেয়ে</span>
+                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80"
+                        alt="কটন হুডি">
+                    <div class="product-info">
+                        <h3>প্রিমিয়াম ফ্লিস হুডি</h3>
+                        <p class="size-info">সাইজ: S, M, L, XL</p>
+                        <p class="price">৳ ১,১৫০ টাকা</p>
+                        <div class="card-actions">
+                            <button class="btn"
+                                onclick="goToCheckoutWithProduct('প্রিমিয়াম ফ্লিস হুডি', 1150, 'S, M, L, XL', 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80')">অর্ডার</button>
+                            <button class="btn-cart" onclick="addToCart('প্রিমিয়াম ফ্লিস হুডি', 1150)">+ কার্ট</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- প্রোডাক্ট ৪ -->
+                <div class="product-card" data-category="women">
+                    <span class="badge women">মেয়েদের</span>
+                    <img src="https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&w=600&q=80"
+                        alt="প্রিমিয়াম জর্জেট থ্রি-পিস">
+                    <div class="product-info">
+                        <h3>প্রিমিয়াম জর্জেট এমব্রয়ডারি থ্রি-পিস</h3>
+                        <p class="size-info">সাইজ: Unstitched, M, L, XL</p>
+                        <p class="price">৳ ১,৮৫০ টাকা</p>
+                        <div class="card-actions">
+                            <button class="btn"
+                                onclick="goToCheckoutWithProduct('প্রিমিয়াম জর্জেট এমব্রয়ডারি থ্রি-পিস', 1850, 'Unstitched, M, L, XL', 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&w=600&q=80')">অর্ডার</button>
+                            <button class="btn-cart"
+                                onclick="addToCart('প্রিমিয়াম জর্জেট এমব্রয়ডারি থ্রি-পিস', 1850)">+ কার্ট</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- প্রোডাক্ট ৫ -->
+                <div class="product-card" data-category="women">
+                    <span class="badge women">মেয়েদের</span>
+                    <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&w=600&q=80"
+                        alt="দুবাই চেরি বোরকা সেট">
+                    <div class="product-info">
+                        <h3>দুবাই চেরি প্রিমিয়াম বোরকা ও হিজাব সেট</h3>
+                        <p class="size-info">সাইজ: 52, 54, 56</p>
+                        <p class="price">৳ ১,৬০০ টাকা</p>
+                        <div class="card-actions">
+                            <button class="btn"
+                                onclick="goToCheckoutWithProduct('দুবাই চেরি প্রিমিয়াম বোরকা ও হিজাব সেট', 1600, '52, 54, 56', 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&w=600&q=80')">অর্ডার</button>
+                            <button class="btn-cart"
+                                onclick="addToCart('দুবাই চেরি প্রিমিয়াম বোরকা ও হিজাব সেট', 1600)">+ কার্ট</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- প্রোডাক্ট ৬ -->
+                <div class="product-card" data-category="women">
+                    <span class="badge women">মেয়েদের</span>
+                    <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=600&q=80"
+                        alt="লাক্সারি পার্টি গাউন">
+                    <div class="product-info">
+                        <h3>লাক্সারি পার্টি গাউন ড্রেস</h3>
+                        <p class="size-info">সাইজ: S, M, L, XL</p>
+                        <p class="price">৳ ২,৯৫০ টাকা</p>
+                        <div class="card-actions">
+                            <button class="btn"
+                                onclick="goToCheckoutWithProduct('লাক্সারি পার্টি গাউন ড্রেস', 2950, 'S, M, L, XL', 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=600&q=80')">অর্ডার</button>
+                            <button class="btn-cart" onclick="addToCart('লাক্সারি পার্টি গাউন ড্রেস', 2950)">+
+                                কার্ট</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- প্রোডাক্ট ৭ -->
+                <div class="product-card" data-category="women">
+                    <span class="badge women">মেয়েদের</span>
+                    <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=600&q=80"
+                        alt="এলিগ্যান্ট লং গাউন ড্রেস">
+                    <div class="product-info">
+                        <h3>এলিগ্যান্ট লং গাউন ড্রেস (Smokie Hand, 53")</h3>
+                        <p class="size-info">সাইজ: Free Size</p>
+                        <p class="price">৳ ৮২০ টাকা</p>
+                        <div class="card-actions">
+                            <button class="btn"
+                                onclick="goToCheckoutWithProduct('এলিগ্যান্ট লং গাউন ড্রেস (Smokie Hand)', 820, 'Free Size (53 Inches)', 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=600&q=80')">অর্ডার</button>
+                            <button class="btn-cart"
+                                onclick="addToCart('এলিগ্যান্ট লং গাউন ড্রেস (Smokie Hand)', 820)">+ কার্ট</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- প্রোডাক্ট ৮ -->
+                <div class="product-card" data-category="women">
+                    <span class="badge women">মেয়েদের</span>
+                    <img src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=600&q=80"
+                        alt="লাক্সারি পিওর লিনেন শার্ট ড্রেস">
+                    <div class="product-info">
+                        <h3>K2059L লাক্সারি পিওর লিনেন শার্ট ড্রেস</h3>
+                        <p class="size-info">সাইজ: S, M, L, XL</p>
+                        <p class="price">৳ ১,৭৫০ টাকা</p>
+                        <div class="card-actions">
+                            <button class="btn"
+                                onclick="goToCheckoutWithProduct('K2059L লাক্সারি পিওর লিনেন শার্ট ড্রেস', 1750, 'S, M, L, XL', 'https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=600&q=80')">অর্ডার</button>
+                            <button class="btn-cart"
+                                onclick="addToCart('K2059L লাক্সারি পিওর লিনেন শার্ট ড্রেস', 1750)">+ কার্ট</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- প্রোডাক্ট ৯ -->
+                <div class="product-card" data-category="men">
+                    <span class="badge">ছেলেদের</span>
+                    <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80"
+                        alt="ম্যানফেয়ার প্রিমিয়াম সলিড শার্ট">
+                    <div class="product-info">
+                        <h3>ম্যানফেয়ার প্রিমিয়াম সলিড শার্ট (MS-03)</h3>
+                        <p class="size-info">সাইজ: M, L, XL</p>
+                        <p class="price">৳ ১,০৫০ টাকা</p>
+                        <div class="card-actions">
+                            <button class="btn"
+                                onclick="goToCheckoutWithProduct('ম্যানফেয়ার প্রিমিয়াম সলিড শার্ট (MS-03)', 1050, 'M, L, XL', 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80')">অর্ডার</button>
+                            <button class="btn-cart"
+                                onclick="addToCart('ম্যানফেয়ার প্রিমিয়াম সলিড শার্ট (MS-03)', 1050)">+ কার্ট</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- প্রোডাক্ট ১০ -->
+                <div class="product-card" data-category="men">
+                    <span class="badge">ছেলেদের</span>
+                    <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80"
+                        alt="হ্যান্ডউইভেন কটন পাঞ্জাবি">
+                    <div class="product-info">
+                        <h3>ক্লাসিক হ্যান্ডউইভেন কটন পাঞ্জাবি</h3>
+                        <p class="size-info">সাইজ: 38, 40, 42, 44</p>
+                        <p class="price">৳ ১,৬৫০ টাকা</p>
+                        <div class="card-actions">
+                            <button class="btn"
+                                onclick="goToCheckoutWithProduct('ক্লাসিক হ্যান্ডউইভেন কটন পাঞ্জাবি', 1650, '38, 40, 42, 44', 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80')">অর্ডার</button>
+                            <button class="btn-cart" onclick="addToCart('ক্লাসিক হ্যান্ডউইভেন কটন পাঞ্জাবি', 1650)">+
+                                কার্ট</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- প্রোডাক্ট ১১ -->
+                <div class="product-card" data-category="kids">
+                    <span class="badge kids">বাচ্চাদের</span>
+                    <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=600&q=80"
+                        alt="বাচ্চাদের উইন্টার হুডি">
+                    <div class="product-info">
+                        <h3>কিডস কার্টুন প্রিন্ট ফ্লিস হুডি</h3>
+                        <p class="size-info">বয়স: ২ - ৮ বছর</p>
+                        <p class="price">৳ ৭৫০ টাকা</p>
+                        <div class="card-actions">
+                            <button class="btn"
+                                onclick="goToCheckoutWithProduct('কিডস কার্টুন প্রিন্ট ফ্লিস হুডি', 750, '২ - ৮ বছর', 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=600&q=80')">অর্ডার</button>
+                            <button class="btn-cart" onclick="addToCart('কিডস কার্টুন প্রিন্ট ফ্লিস হুডি', 750)">+
+                                কার্ট</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- প্রোডাক্ট ১২ -->
+                <div class="product-card" data-category="kids">
+                    <span class="badge kids">বাচ্চাদের</span>
+                    <img src="https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?auto=format&fit=crop&w=600&q=80"
+                        alt="বাচ্চাদের পার্টি ফ্রক">
+                    <div class="product-info">
+                        <h3>বেবি গার্ল ভেলভেট উইন্টার ফ্রক</h3>
+                        <p class="size-info">বয়স: ১ - ৬ বছর</p>
+                        <p class="price">৳ ১,০৫০ টাকা</p>
+                        <div class="card-actions">
+                            <button class="btn"
+                                onclick="goToCheckoutWithProduct('বেবি গার্ল ভেলভেট উইন্টার ফ্রক', 1050, '১ - ৬ বছর', 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?auto=format&fit=crop&w=600&q=80')">অর্ডার</button>
+                            <button class="btn-cart" onclick="addToCart('বেবি গার্ল ভেলভেট উইন্টার ফ্রক', 1050)">+
+                                কার্ট</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================== পেজ ৩: কাস্টম টেইলরিং (নিজের মাপে কাপড় বানান) ==================== -->
+    <div id="tailor-page" class="page-view">
+        <div class="form-page-container">
+            <h2 class="section-title">✂️ অনলাইন লেডিস টেইলরিং (নিজের মাপে পোশাক বানান)</h2>
+            <p class="section-subtitle">ট্রেইলার্সের দোকানে যাওয়ার ঝামেলা ছাড়াই আপনার সঠিক মাপ ও ডিজাইন দিয়ে
+                <strong>Anas Fabrics and Ladies Tailors</strong> থেকে পোশাক তৈরি করে নিন।</p>
+
+            <form onsubmit="submitTailorOrder(event)">
+                <div class="form-grid-2">
+                    <div class="input-group">
+                        <label>পোশাকের ধরন নির্বাচন করুন *</label>
+                        <select id="tailorDressType" required>
+                            <option value="সালোয়ার কামিজ (থ্রি-পিস সেলাই)">সালোয়ার কামিজ (থ্রি-পিস সেলাই) - মজুরি ৳
+                                ৪৫০</option>
+                            <option value="ডিজাইনার ব্লাউজ">ডিজাইনার ব্লাউজ - মজুরি ৳ ৩০০</option>
+                            <option value="কাস্টম বোরকা / আবায়া">কাস্টম বোরকা / আবায়া - মজুরি ৳ ৫৫০</option>
+                            <option value="পার্টি গাউন / লং ফ্রক">পার্টি গাউন / লং ফ্রক - মজুরি ৳ ৬৫০</option>
+                            <option value="বাচ্চাদের ফ্রক / জামা">বাচ্চাদের ফ্রক / জামা - মজুরি ৳ ৩৫০</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>কাপড়ের ব্যবস্থা *</label>
+                        <select id="tailorFabricSource" required>
+                            <option value="আমাদের কাছ থেকে কাপড়সহ তৈরি করবেন">আমাদের কাছ থেকে কাপড়সহ তৈরি করবেন</option>
+                            <option value="কাস্টমার নিজের কাপড় পাঠাবেন">আমি নিজের কাপড় পাঠিয়ে দেব (শুধু সেলাই)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <h4 style="margin: 15px 0 10px 0; color:#e94560;">📏 আপনার শরীরের মাপ লিখুন (ইঞ্চিতে):</h4>
+                <div class="form-grid-3">
+                    <div class="input-group">
+                        <label>জামার লম্বা (Length) *</label>
+                        <input type="text" id="mLength" placeholder="যেমন: 42 ইঞ্চি" required>
+                    </div>
+                    <div class="input-group">
+                        <label>বডি / বুক (Chest) *</label>
+                        <input type="text" id="mChest" placeholder="যেমন: 36 ইঞ্চি" required>
+                    </div>
+                    <div class="input-group">
+                        <label>কোমর (Waist) *</label>
+                        <input type="text" id="mWaist" placeholder="যেমন: 32 ইঞ্চি" required>
+                    </div>
+                    <div class="input-group">
+                        <label>হিপ (Hip)</label>
+                        <input type="text" id="mHip" placeholder="যেমন: 38 ইঞ্চি">
+                    </div>
+                    <div class="input-group">
+                        <label>হাতার লম্বা ও মুহুরি (Sleeve) *</label>
+                        <input type="text" id="mSleeve" placeholder="যেমন: লম্বা 17, মুহুরি 10" required>
+                    </div>
+                    <div class="input-group">
+                        <label>গলার মাপ ও ডিজাইন (Neck) *</label>
+                        <input type="text" id="mNeck" placeholder="যেমন: সামনে 6, পিছনে 4 (গোল গলা)" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>পায়জামা / সালোয়ারের মাপ ও বিশেষ ডিজাইন নির্দেশনা</label>
+                    <textarea id="mNotes" rows="3"
+                        placeholder="যেমন: সালোয়ারের লম্বা ৩৮ ইঞ্চি, পকেট লাগবে, হাতায় লেস বসবে ইত্যাদি..."></textarea>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="input-group">
+                        <label>আপনার নাম *</label>
+                        <input type="text" id="tCustName" placeholder="সম্পূর্ণ নাম লিখুন" required>
+                    </div>
+                    <div class="input-group">
+                        <label>মোবাইল নম্বর *</label>
+                        <input type="tel" id="tCustPhone" placeholder="01XXXXXXXXX" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>ডেলিভারি ঠিকানা *</label>
+                    <input type="text" id="tCustAddress" placeholder="গ্রাম/মহল্লা, থানা ও জেলার নাম" required>
+                </div>
+
+                <button type="submit" class="btn" style="width:100%; padding:14px; font-size:16px;">✂️ কাস্টম টেইলরিং
+                    অর্ডার পাঠান</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== পেজ ৪: সেলার রেজিস্ট্রেশন (অ্যাপ্রুভাল সিস্টেম) ==================== -->
+    <div id="seller-page" class="page-view">
+        <div class="form-page-container" style="border-top-color: #d97706;">
+            <h2 class="section-title">🏪 সেলার হিসেবে পণ্য বিক্রি করুন (Vendor Request)</h2>
+            <p class="section-subtitle">আপনার পণ্য বিক্রির জন্য নিচের ফর্মটি পূরণ করে আবেদন করুন। অ্যাডমিন রিভিউ করে
+                <strong>Approved</strong> দিলেই আপনার পণ্যটি আমাদের ওয়েবসাইটে লাইভ হয়ে যাবে।</p>
+
+            <form onsubmit="submitSellerProduct(event)">
+                <div class="form-grid-2">
+                    <div class="input-group">
+                        <label>সেলার / দোকানের নাম *</label>
+                        <input type="text" id="sShopName" placeholder="আপনার নাম বা দোকানের নাম" required>
+                    </div>
+                    <div class="input-group">
+                        <label>সেলার মোবাইল / হোয়াটসঅ্যাপ নম্বর *</label>
+                        <input type="tel" id="sPhone" placeholder="01XXXXXXXXX" required>
+                    </div>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="input-group">
+                        <label>পণ্যের নাম *</label>
+                        <input type="text" id="sProductName" placeholder="যেমন: হ্যান্ডপেইন্ট কটন শাড়ি" required>
+                    </div>
+                    <div class="input-group">
+                        <label>পণ্যের বিক্রয় মূল্য (টাকায়) *</label>
+                        <input type="number" id="sPrice" placeholder="যেমন: 1450" required>
+                    </div>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="input-group">
+                        <label>ক্যাটাগরি *</label>
+                        <select id="sCategory" required>
+                            <option value="মেয়েদের">মেয়েদের পোশাক</option>
+                            <option value="ছেলেদের">ছেলেদের পোশাক</option>
+                            <option value="বাচ্চাদের">বাচ্চাদের পোশাক</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>উপলব্ধ সাইজসমূহ *</label>
+                        <input type="text" id="sSizes" placeholder="যেমন: M, L, XL বা Free Size" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>পণ্যের ছবির লিংক বা বিবরণ *</label>
+                    <textarea id="sDesc" rows="3"
+                        placeholder="কাপড়ের কোয়ালিটি, রঙ এবং ছবির গুগল ড্রাইভ/ফেসবুক লিংক দিন (ছবি সরাসরি হোয়াটসঅ্যাপেও পাঠাতে পারবেন)..."
+                        required></textarea>
+                </div>
+
+                <button type="submit" class="btn"
+                    style="width:100%; padding:14px; font-size:16px; background:#d97706;">📩 অ্যাপ্রুভালের জন্য আবেদন
+                    জমা দিন</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== পেজ ৫: কাস্টমার রিভিউ পেজ ==================== -->
+    <div id="reviews-page" class="page-view">
+        <div style="padding-top:35px;">
+            <h2 class="section-title">⭐ সম্মানিত কাস্টমারদের রিভিউ</h2>
+            <p class="section-subtitle">আমাদের নিয়মিত ক্রেতাদের অভিজ্ঞতা ও মতামত</p>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div style="color:#f39c12; font-size:18px;">★★★★★</div>
+                    <p style="margin:8px 0; font-style:italic;">"আনাস ফ্যাশন হাউজ থেকে জর্জেট থ্রি-পিস এবং কাস্টম
+                        টেইলরিং সেকশন থেকে নিজের মাপে একটি জামা বানিয়েছিলাম। ফিটিং একদম পারফেক্ট হয়েছে!"</p>
+                    <strong>— নুসরাত জাহান, বগুড়া</strong>
+                </div>
+                <div class="review-card">
+                    <div style="color:#f39c12; font-size:18px;">★★★★★</div>
+                    <p style="margin:8px 0; font-style:italic;">"Pay Order-এ বিকাশের মাধ্যমে পেমেন্ট করেছিলাম, সাথে সাথে
+                        অর্ডার কনফার্মেশন নোটিফিকেশন পেয়েছি এবং ২ দিনের মধ্যে ডেলিভারি হাতে পেয়েছি।"</p>
+                    <strong>— তানভীর আহমেদ, ঢাকা</strong>
+                </div>
+                <div class="review-card">
+                    <div style="color:#f39c12; font-size:18px;">★★★★★</div>
+                    <p style="margin:8px 0; font-style:italic;">"দুবাই চেরি বোরকা সেট এবং বাচ্চার জন্য উইন্টার হুডি
+                        নিয়েছিলাম। কাপড়ের মান ও সেলাই অসাধারণ।"</p>
+                    <strong>— সাদিয়া ইসলাম, রাজশাহী</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== পেজ ৬: অর্ডার ফর্ম / চেকআউট পেজ ==================== -->
+    <div id="checkout-page" class="page-view">
+        <div class="checkout-container">
+            <h2 class="section-title">🛍️ অর্ডার কনফার্মেশন ও পেমেন্ট ফর্ম</h2>
+            <p class="section-subtitle">Hand Pay Order অথবা Pay Order (বিকাশ, নগদ, রকেট, ব্যাংক) নির্বাচন করে অর্ডার
+                সম্পন্ন করুন</p>
+
+            <form onsubmit="processFinalOrder(event)">
+                <div class="checkout-grid">
+                    <!-- বাম পাশ -->
+                    <div>
+                        <div class="checkout-box-title">১. নির্বাচিত পণ্য ও সাইজ</div>
+                        <div class="selected-item-card">
+                            <div class="selected-item-details">
+                                <img id="checkoutImg"
+                                    src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=400&q=80"
+                                    alt="Product">
+                                <div>
+                                    <h4 id="checkoutProductName" style="font-size:15px;">স্টাইলিশ উইন্টার জ্যাকেট</h4>
+                                    <p id="checkoutUnitPriceText" style="color:#e94560; font-weight:bold;">৳ ২,২০০</p>
+                                </div>
+                            </div>
+                            <div class="qty-controls">
+                                <button type="button" class="qty-btn" onclick="changeQty(-1)">−</button>
+                                <span id="checkoutQty" style="font-weight:bold;">1</span>
+                                <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label>সাইজ / বয়স নির্বাচন করুন *</label>
+                            <select id="checkoutSize" required>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                            </select>
+                        </div>
+
+                        <div class="checkout-box-title" style="margin-top:20px;">২. ক্রেতার ডেলিভারি তথ্য</div>
+                        <div class="input-group">
+                            <label>আপনার সম্পূর্ণ নাম *</label>
+                            <input type="text" id="custName" placeholder="নাম লিখুন" required>
+                        </div>
+                        <div class="input-group">
+                            <label>মোবাইল নম্বর *</label>
+                            <input type="tel" id="custPhone" placeholder="01XXXXXXXXX" required>
+                        </div>
+                        <div class="input-group">
+                            <label>সম্পূর্ণ ডেলিভারি ঠিকানা *</label>
+                            <textarea id="custAddress" rows="3" placeholder="হাউজ/গ্রাম, রোড, থানা ও জেলার নাম"
+                                required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- ডান পাশ -->
+                    <div>
+                        <div class="checkout-box-title">৩. ডেলিভারি এলাকা (Shipping)</div>
+                        <div class="order-type-box">
+                            <label class="radio-row">
+                                <span><input type="radio" name="shippingArea" value="50" checked
+                                        onchange="updateCheckoutTotal()"> বগুড়া শহরের ভেতরে</span>
+                                <span>৳ ৫০</span>
+                            </label>
+                            <label class="radio-row">
+                                <span><input type="radio" name="shippingArea" value="120"
+                                        onchange="updateCheckoutTotal()"> বগুড়ার বাইরে (সারা বাংলাদেশ)</span>
+                                <span>৳ ১২০</span>
+                            </label>
+                        </div>
+
+                        <div class="checkout-box-title">৪. অর্ডার ধরন ও পেমেন্ট মেথড</div>
+                        <div class="payment-methods-box">
+                            <label class="radio-row" style="color:#1a1a2e;">
+                                <span><input type="radio" name="orderMode" value="Hand Pay Order (ক্যাশ অন ডেলিভারি)"
+                                        checked onchange="toggleOrderMode()"> 🤝 Hand Pay Order (পণ্য হাতে পেয়ে টাকা
+                                    দিন)</span>
+                            </label>
+                            <label class="radio-row" style="color:#e94560;">
+                                <span><input type="radio" name="orderMode" value="Pay Order (অগ্রিম পেমেন্ট)"
+                                        onchange="toggleOrderMode()"> 💳 Pay Order (অগ্রিম পেমেন্ট করুন)</span>
+                            </label>
+
+                            <!-- Pay Order সিলেক্ট করলে পেমেন্ট গেটওয়ে অপশন খুলবে -->
+                            <div id="payOrderDetails"
+                                style="display:none; margin-top:12px; padding-top:10px; border-top:1px dashed #ccc;">
+                                <label
+                                    style="font-size:13px; font-weight:bold; display:block; margin-bottom:6px;">পেমেন্ট
+                                    মাধ্যম বেছে নিন:</label>
+                                <select id="paymentGateway" onchange="updateGatewayInfo()"
+                                    style="width:100%; padding:8px; border-radius:6px; margin-bottom:8px;">
+                                    <option value="bKash (বিকাশ)">bKash (বিকাশ পার্সোনাল)</option>
+                                    <option value="Nagad (নগদ)">Nagad (নগদ পার্সোনাল)</option>
+                                    <option value="Rocket (রকেট)">Rocket (রকেট পার্সোনাল)</option>
+                                    <option value="Upay (উপায়)">Upay (উপায়)</option>
+                                    <option value="Bank Transfer (ব্যাংক অ্যাকাউন্ট)">Bank Transfer (ইসলামী ব্যাংক /
+                                        ডাচ-বাংলা ব্যাংক)</option>
+                                </select>
+
+                                <div id="gatewayAccountInfo" class="account-details-card">
+                                    📱 <strong>bKash Personal:</strong> 01341725738 (Send Money করুন)
+                                </div>
+
+                                <div class="input-group" style="margin-top:10px; margin-bottom:0;">
+                                    <label>Transaction ID (TrxID) বা প্রেরকের নম্বর *</label>
+                                    <input type="text" id="trxIdInput" placeholder="যেমন: 9H7K2L5M অথবা আপনার নম্বর">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="summary-box">
+                            <div class="summary-line">
+                                <span id="summaryProductText">স্টাইলিশ উইন্টার জ্যাকেট × 1</span>
+                                <span id="summarySubtotalText">৳ ২,২০০</span>
+                            </div>
+                            <div class="summary-line">
+                                <span>ডেলিভারি চার্জ</span>
+                                <span id="summaryShippingText">৳ ৫০</span>
+                            </div>
+                            <div class="summary-line total">
+                                <span>সর্বমোট বিল:</span>
+                                <span id="summaryTotalText">৳ ২,২৫০</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn"
+                            style="width:100%; padding:15px; font-size:17px; border-radius:30px;"
+                            id="confirmBtnText">অর্ডার কনফার্ম করুন ৳ ২,২৫০</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== পেজ ৭: যোগাযোগ পেজ ==================== -->
+    <div id="contact-page" class="page-view">
+        <div class="form-page-container" style="text-align:center;">
+            <h2 class="section-title">📞 আমাদের সাথে যোগাযোগ করুন</h2>
+            <p class="section-subtitle">যেকোনো অর্ডার, কাস্টম টেইলরিং বা সেলার পার্টনারশিপের জন্য সরাসরি যোগাযোগ করুন
+            </p>
+            <div style="background:#f8f9fa; padding:25px; border-radius:10px; line-height:2; font-size:16px;">
+                <p>🏪 <strong>প্রতিষ্ঠান:</strong> আনাস ফ্যাশন হাউজ (Anas Fabrics and Ladies Tailors)</p>
+                <p>📍 <strong>ঠিকানা:</strong> বগুড়া, বাংলাদেশ</p>
+                <p>📞 <strong>মোবাইল / WhatsApp / bKash / Nagad / Rocket:</strong> +8801341725738</p>
+                <p>📧 <strong>ইমেইল:</strong> tahmeedjhossain744@gmail.com | itztahmeed70@gmail.com</p>
+            </div>
+            <br>
+            <a href="https://wa.me/8801341725738" target="_blank" class="btn"
+                style="background:#25D366; font-size:16px;">💬 সরাসরি হোয়াটসঅ্যাপে মেসেজ দিন</a>
+        </div>
+    </div>
+
+    <!-- ==================== অর্ডার কনফার্মেশন নোটিফিকেশন পপ-আপ ==================== -->
+    <div id="orderNotifModal" class="notification-modal">
+        <div class="notification-card">
+            <div class="notif-icon">✅</div>
+            <h3 style="color:#1a1a2e; font-size:22px;">অর্ডার সফলভাবে গৃহীত হয়েছে!</h3>
+            <p style="font-size:14px; color:#555; margin-top:5px;">ধন্যবাদ! আপনার অর্ডারের নোটিফিকেশন ও ইনভয়েস নিচে তৈরি
+                হয়েছে:</p>
+
+            <div class="receipt-box" id="notifReceiptDetails"></div>
+
+            <button class="btn" style="width:100%; background:#25D366; padding:12px; font-size:15px; margin-bottom:8px;"
+                id="sendWhatsAppFinalBtn">📲 হোয়াটসঅ্যাপে রিসিট পাঠিয়ে কনফার্ম করুন</button>
+            <button class="btn btn-secondary" style="width:100%;" onclick="closeNotifModal()">বন্ধ করুন</button>
+        </div>
+    </div>
+
+    <!-- ফ্লোটিং হোয়াটসঅ্যাপ বাটন -->
+    <a href="https://wa.me/8801341725738" target="_blank" class="floating-whatsapp">💬 WhatsApp</a>
+
+    <footer>
+        <p>&copy; ২০২৬ আনাস ফ্যাশন হাউজ (Anas Fabrics and Ladies Tailors) | সর্বস্বত্ব সংরক্ষিত</p>
+    </footer>
+
+    <script>
+        let selectedCategory = "all";
+        let checkoutProduct = "স্টাইলিশ উইন্টার জ্যাকেট";
+        let checkoutUnitPrice = 2200;
+        let checkoutQuantity = 1;
+        let cartItems = [];
+        let pendingWhatsAppURL = "";
+
+        // ১. অটোমেটিক স্লাইডার স্মুথ লুপ তৈরি
+        window.onload = function () {
+            const track = document.getElementById("autoSliderTrack");
+            track.innerHTML += track.innerHTML; // ইনফিনিট স্মুথ স্লাইডের জন্য কন্টেন্ট ডুপ্লিকেট
+        };
+
+        // ২. আলাদা পেজ ভিউ পরিবর্তন (Navigation)
+        function switchPage(pageId, btnElement) {
+            document.querySelectorAll(".page-view").forEach(page => page.classList.remove("active-page"));
+            document.getElementById(pageId).classList.add("active-page");
+
+            document.querySelectorAll(".nav-btn").forEach(btn => btn.classList.remove("active-nav"));
+            if (btnElement) btnElement.classList.add("active-nav");
+
+            document.getElementById("navbar").classList.remove("show");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function toggleMenu() {
+            document.getElementById("navbar").classList.toggle("show");
+        }
+
+        // ৩. সার্চ ও ক্যাটাগরি ফিল্টার
+        function setCategory(category, btnElement) {
+            selectedCategory = category;
+            document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+            btnElement.classList.add("active");
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const searchText = document.getElementById("searchInput").value.toLowerCase().trim();
+            document.querySelectorAll(".product-card").forEach(card => {
+                const cat = card.getAttribute("data-category");
+                const title = card.querySelector("h3").innerText.toLowerCase();
+                const matchCat = (selectedCategory === "all" || cat === selectedCategory);
+                const matchSearch = title.includes(searchText);
+                card.style.display = (matchCat && matchSearch) ? "flex" : "none";
+            });
+        }
+
+        // ৪. শপিং কার্ট ফাংশন
+        function addToCart(name, price) {
+            cartItems.push({ name, price });
+            document.getElementById("cartCount").innerText = cartItems.length;
+            alert(`"${name}" আপনার কার্টে যুক্ত হয়েছে!`);
+        }
+
+        function openCartModal() {
+            if (cartItems.length === 0) {
+                alert("আপনার কার্ট বর্তমানে খালি! কালেকশন থেকে পণ্য যুক্ত করুন।");
+                return;
+            }
+            let totalCart = 0;
+            let names = [];
+            cartItems.forEach(item => {
+                totalCart += item.price;
+                names.push(item.name);
+            });
+            goToCheckoutWithProduct(names.join(" + "), totalCart, "Standard / Mixed", "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=400&q=80");
+        }
+
+        // ৫. প্রোডাক্ট থেকে সরাসরি অর্ডার ফর্ম পেজে যাওয়া
+        function goToCheckoutWithProduct(name, price, sizes, imgUrl) {
+            checkoutProduct = name;
+            checkoutUnitPrice = price;
+            checkoutQuantity = 1;
+
+            document.getElementById("checkoutImg").src = imgUrl;
+            document.getElementById("checkoutProductName").innerText = name;
+            document.getElementById("checkoutUnitPriceText").innerText = "৳ " + price;
+            document.getElementById("checkoutQty").innerText = 1;
+
+            const sizeSelect = document.getElementById("checkoutSize");
+            sizeSelect.innerHTML = "";
+            sizes.split(",").map(s => s.trim()).forEach(sz => {
+                const opt = document.createElement("option");
+                opt.value = sz;
+                opt.text = sz;
+                sizeSelect.appendChild(opt);
+            });
+
+            updateCheckoutTotal();
+            switchPage("checkout-page", document.getElementById("nav-checkout"));
+        }
+
+        function changeQty(delta) {
+            if (checkoutQuantity + delta >= 1) {
+                checkoutQuantity += delta;
+                document.getElementById("checkoutQty").innerText = checkoutQuantity;
+                updateCheckoutTotal();
+            }
+        }
+
+        function updateCheckoutTotal() {
+            const shippingCost = parseInt(document.querySelector('input[name="shippingArea"]:checked').value);
+            const subtotal = checkoutUnitPrice * checkoutQuantity;
+            const total = subtotal + shippingCost;
+
+            document.getElementById("summaryProductText").innerText = `${checkoutProduct} × ${checkoutQuantity}`;
+            document.getElementById("summarySubtotalText").innerText = "৳ " + subtotal;
+            document.getElementById("summaryShippingText").innerText = "৳ " + shippingCost;
+            document.getElementById("summaryTotalText").innerText = "৳ " + total;
+            document.getElementById("confirmBtnText").innerText = "অর্ডার কনফার্ম করুন ৳ " + total;
+        }
+
+        // ৬. Hand Pay বনাম Pay Order ও পেমেন্ট গেটওয়ে তথ্য
+        function toggleOrderMode() {
+            const mode = document.querySelector('input[name="orderMode"]:checked').value;
+            const payDetails = document.getElementById("payOrderDetails");
+            const trxInput = document.getElementById("trxIdInput");
+            if (mode.includes("Pay Order")) {
+                payDetails.style.display = "block";
+                trxInput.required = true;
+            } else {
+                payDetails.style.display = "none";
+                trxInput.required = false;
+            }
+        }
+
+        function updateGatewayInfo() {
+            const gw = document.getElementById("paymentGateway").value;
+            const infoBox = document.getElementById("gatewayAccountInfo");
+            if (gw.includes("bKash")) {
+                infoBox.innerHTML = "📱 <strong>bKash Personal:</strong> 01341725738 (Send Money করুন)";
+            } else if (gw.includes("Nagad")) {
+                infoBox.innerHTML = "📱 <strong>Nagad Personal:</strong> 01341725738 (Send Money করুন)";
+            } else if (gw.includes("Rocket")) {
+                infoBox.innerHTML = "📱 <strong>Rocket Personal:</strong> 01341725738-9 (Send Money করুন)";
+            } else if (gw.includes("Upay")) {
+                infoBox.innerHTML = "📱 <strong>Upay Personal:</strong> 01341725738 (Send Money করুন)";
+            } else {
+                infoBox.innerHTML = "🏦 <strong>Bank Account:</strong> Anas Fashion House | A/C: 2050123456789 (Islami Bank Bangladesh PLC, Bogura Branch)";
+            }
+        }
+
+        // ৭. অর্ডার সাবমিট ও ইনস্ট্যান্ট নোটিফিকেশন দেখানো
+        function processFinalOrder(event) {
+            event.preventDefault();
+            const orderId = "AFH-" + Math.floor(100000 + Math.random() * 900000);
+            const name = document.getElementById("custName").value.trim();
+            const phone = document.getElementById("custPhone").value.trim();
+            const address = document.getElementById("custAddress").value.trim();
+            const size = document.getElementById("checkoutSize").value;
+            const shippingCost = parseInt(document.querySelector('input[name="shippingArea"]:checked').value);
+            const orderMode = document.querySelector('input[name="orderMode"]:checked').value;
+
+            let paymentInfo = "Hand Pay (পণ্য হাতে পেয়ে ক্যাশ পেমেন্ট)";
+            if (orderMode.includes("Pay Order")) {
+                const gw = document.getElementById("paymentGateway").value;
+                const trx = document.getElementById("trxIdInput").value.trim();
+                paymentInfo = `Pay Order (${gw}) | TrxID: ${trx}`;
+            }
+
+            const total = (checkoutUnitPrice * checkoutQuantity) + shippingCost;
+
+            // কাস্টমারের জন্য নোটিফিকেশন কার্ড আপডেট
+            document.getElementById("notifReceiptDetails").innerHTML = `
+                <p><strong>অর্ডার আইডি:</strong> #${orderId}</p>
+                <p><strong>পণ্য:</strong> ${checkoutProduct} (${checkoutQuantity} পিস, সাইজ: ${size})</p>
+                <p><strong>মোট বিল:</strong> ৳ ${total}</p>
+                <p><strong>পেমেন্ট ধরন:</strong> ${paymentInfo}</p>
+                <p><strong>ক্রেতা:</strong> ${name} (${phone})</p>
+                <p><strong>ঠিকানা:</strong> ${address}</p>
+            `;
+
+            const msg = `✅ *নতুন অর্ডার নোটিফিকেশন (#${orderId})*\n\n` +
+                `🛍️ *পণ্য:* ${checkoutProduct} (${checkoutQuantity} পিস)\n` +
+                `📏 *সাইজ:* ${size}\n` +
+                `💰 *সর্বমোট বিল:* ৳ ${total}\n` +
+                `💳 *পেমেন্ট:* ${paymentInfo}\n\n` +
+                `👤 *নাম:* ${name}\n` +
+                `📞 *মোবাইল:* ${phone}\n` +
+                `📍 *ঠিকানা:* ${address}`;
+
+            pendingWhatsAppURL = `https://wa.me/8801341725738?text=${encodeURIComponent(msg)}`;
+            document.getElementById("sendWhatsAppFinalBtn").onclick = function () {
+                window.open(pendingWhatsAppURL, "_blank");
+            };
+
+            document.getElementById("orderNotifModal").style.display = "flex";
+        }
+
+        function closeNotifModal() {
+            document.getElementById("orderNotifModal").style.display = "none";
+        }
+
+        // ৮. কাস্টম টেইলরিং ফর্ম সাবমিট
+        function submitTailorOrder(event) {
+            event.preventDefault();
+            const dress = document.getElementById("tailorDressType").value;
+            const fabric = document.getElementById("tailorFabricSource").value;
+            const len = document.getElementById("mLength").value;
+            const chest = document.getElementById("mChest").value;
+            const waist = document.getElementById("mWaist").value;
+            const hip = document.getElementById("mHip").value || "N/A";
+            const sleeve = document.getElementById("mSleeve").value;
+            const neck = document.getElementById("mNeck").value;
+            const notes = document.getElementById("mNotes").value;
+            const name = document.getElementById("tCustName").value;
+            const phone = document.getElementById("tCustPhone").value;
+            const address = document.getElementById("tCustAddress").value;
+
+            const msg = `✂️ *কাস্টম লেডিস টেইলরিং অর্ডার*\n\n` +
+                `👗 *পোশাক:* ${dress}\n` +
+                `🧵 *কাপড়:* ${fabric}\n` +
+                `📏 *মাপ (ইঞ্চি):* লম্বা: ${len}, বডি: ${chest}, কোমর: ${waist}, হিপ: ${hip}, হাতা: ${sleeve}, গলা: ${neck}\n` +
+                `📝 *বিশেষ ডিজাইন:* ${notes}\n\n` +
+                `👤 *নাম:* ${name} (${phone})\n` +
+                `📍 *ঠিকানা:* ${address}`;
+
+            window.open(`https://wa.me/8801341725738?text=${encodeURIComponent(msg)}`, "_blank");
+        }
+
+        // ৯. সেলার রেজিস্ট্রেশন ফর্ম সাবমিট
+        function submitSellerProduct(event) {
+            event.preventDefault();
+            const shop = document.getElementById("sShopName").value;
+            const phone = document.getElementById("sPhone").value;
+            const pName = document.getElementById("sProductName").value;
+            const price = document.getElementById("sPrice").value;
+            const cat = document.getElementById("sCategory").value;
+            const sizes = document.getElementById("sSizes").value;
+            const desc = document.getElementById("sDesc").value;
+
+            const msg = `🏪 *নতুন সেলার প্রোডাক্ট অ্যাপ্রুভাল আবেদন*\n\n` +
+                `🏬 *সেলার/দোকান:* ${shop} (${phone})\n` +
+                `📦 *পণ্যের নাম:* ${pName}\n` +
+                `💰 *মূল্য:* ৳ ${price}\n` +
+                `📂 *ক্যাটাগরি:* ${cat} | *সাইজ:* ${sizes}\n` +
+                `📝 *বিবরণ ও ছবির লিংক:* ${desc}\n\n` +
+                `⚠️ অ্যাডমিন অ্যাপ্রুভাল পেলে পণ্যটি ওয়েবসাইটে যুক্ত হবে।`;
+
+            alert("আপনার সেলার আবেদনটি অ্যাডমিনের কাছে পাঠানো হচ্ছে! অ্যাপ্রুভাল পেলে আপনার পণ্য ওয়েবসাইটে যুক্ত হবে।");
+            window.open(`https://wa.me/8801341725738?text=${encodeURIComponent(msg)}`, "_blank");
+        }
+    </script>
+
+</body>
+
+</html>
